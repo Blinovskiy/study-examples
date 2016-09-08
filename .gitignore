@@ -1,9 +1,5 @@
 .idea
 /target/
 project/
-/src/main/scala/work/
 *.iml
-*.log
-*logs/*.log
-
-
+**.log
