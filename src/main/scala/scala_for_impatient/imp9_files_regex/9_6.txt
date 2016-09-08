@@ -1,0 +1,15 @@
+3.1 'download and install trial http://www.cogitek.com/riatest/download.html'
+3.2 "Copy in C:\Program Files (x86)\RIATest 6\agent\RIATestAgent45.swc to your ..\APPLICATION directory"
+3.3 "\cd to ..\APPLICATION directory of project and run:\"
+\\"mvn dependency:resolve -U\\"
+
+6. run:
+mvn install:install-file -DgeneratePom=true -Dpackaging=swc -DgroupId=com.riatest -Dversion=4.5 -DartifactId=riatestagent -Dfile=RIATestAgent45.swc
+
+7.1. open project application`s pom.xml
+7.1. add <flex-framework.version>4.6.b.23201</flex-framework.version> in  <properties> section
+7.2. add riaTest net.flexmojos.oss plugin in <plugins> section (with configuration and dependencies)
+7.3. add dependencies in net.flexmojos.oss <plugin> section
+7.4. add all riaTest <dependencies> in <project> section
+7.5. run:
+mvn dependency:resolve -U

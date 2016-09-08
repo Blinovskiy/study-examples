@@ -1,0 +1,34 @@
+1.      clone http://dev-gosling.vistajet.local/vistajet/globalview-application.git
+2.      install Apache Maven 3.3.3
+2.1.    download settings.xml from http://dev-faraday:8090/pages/viewpage.action?pageId=6291551
+2.2.    copy settings.xml to .m2 directory
+
+3.1     download and install trial http://www.cogitek.com/riatest/download.html
+3.2     Copy in C:\Program Files (x86)\RIATest 6\agent\RIATestAgent45.swc to your ..\APPLICATION directory
+3.3     cd to ..\APPLICATION directory of project and run:
+mvn dependency:resolve -U
+
+6. run:
+mvn install:install-file -DgeneratePom=true -Dpackaging=swc -DgroupId=com.riatest -Dversion=4.5 -DartifactId=riatestagent -Dfile=RIATestAgent45.swc
+
+7.1. open project application`s pom.xml 
+7.1. add <flex-framework.version>4.6.b.23201</flex-framework.version> in  <properties> section
+7.2. add riaTest net.flexmojos.oss plugin in <plugins> section (with configuration and dependencies)
+7.3. add dependencies in net.flexmojos.oss <plugin> section
+7.4. add all riaTest <dependencies> in <project> section
+7.5. run:
+mvn dependency:resolve -U
+
+8.1. rename automation_agent-4.6.b.23201.swc in C:\Users\%USERNAME%\.m2\repository\com\adobe\flex\framework\automation_agent\4.6.b.23201 to automation_agent-4.6.b.23201.bak
+8.2. copy new(apache version, without steps restrictions) automation_agent-4.6.b.23201.swc to C:\Users\%USERNAME%\.m2\repository\com\adobe\flex\framework\automation_agent\4.6.b.23201
+
+9.1. cd to ..\APPLICATION\web\src\main\config\DEV-WL
+9.2. open web.xml
+9.3. find applicationPort param, change value to 7003
+9.4. find toolbarColor param, change value to 0xFFFF00
+9.5. find bpm.enabled param, change value to false (bpm mock)
+
+10.1. cd to ..\APPLICATION directory
+10.2. build application: 
+mvn clean install -Dmaven.test.skip=true -P DEV-WL
+10.3. get .war in ..\APPLICATION\web\target\VJET.war
